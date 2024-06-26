@@ -1,0 +1,5 @@
+
+TO DO:
+    - Complete a home page 
+        - Responsive design
+        
