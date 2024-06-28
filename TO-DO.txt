@@ -1,5 +1,11 @@
 
 TO DO:
     - Complete a home page 
-        - Responsive design
-        
+        - Responsive design -- DONE
+    - Finish routes
+        - 
+
+Database
+    - Setup db for hotels -- DONE
+    - Pull data from db to our front end. - Front end -> back end  -> data will generate.
+    
