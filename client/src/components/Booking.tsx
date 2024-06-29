@@ -1,5 +1,4 @@
-// src/pages/RoomsGallery.tsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 interface Room {
@@ -16,7 +15,33 @@ const rooms: Room[] = [
   { id: 3, name: 'Suite', description: 'A luxurious suite with all amenities.', price: 300, imageUrl: 'https://via.placeholder.com/300' },
 ];
 
+
 const RoomsGallery: React.FC = () => {
+  const [data, setData] = useState({});
+
+
+  const generateContent = () => {
+    console.log(data)
+  }
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+        const response =  await fetch('http://127.0.0.1:5000/hotels', {
+          method: "POST",
+        })
+        
+        const dbData = await response.json();
+        setData(dbData)
+        generateContent()
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    fetchData()
+  }, []); 
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
