@@ -4,10 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-flask = "*"
 psycopg2-binary = "*"
 psycopg = "*"
 psycopg2 = "*"
+cors = "*"
+flask-cors = "*"
+flask = {extras = ["async"], version = "*"}
+asyncpg = "*"
 
 [dev-packages]
 

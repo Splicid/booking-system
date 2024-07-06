@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface Room {
   id: number;
@@ -18,28 +18,52 @@ interface Hotel {
   rating: number;
 }
 
-const rooms: Room[] = [
-  { id: 1, name: 'Ocean View Room', description: 'A beautiful room with an ocean view.', price: 200, imageUrl: 'https://via.placeholder.com/300' },
-  { id: 2, name: 'Garden Room', description: 'A peaceful room with a garden view.', price: 150, imageUrl: 'https://via.placeholder.com/300' },
-  { id: 3, name: 'Suite', description: 'A luxurious suite with all amenities.', price: 300, imageUrl: 'https://via.placeholder.com/300' },
-];
-
 const RoomsGallery: React.FC = () => {
   const [data, setData] = useState<Hotel[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const navigate = useNavigate();
+
+  const handleBookNow = async (hotel: Hotel) => {
+    try {
+      const response = await fetch('http://127.0.0.1:5000/book', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(hotel),
+      });
+      // Server response
+      const servResponse = await response.json()
+
+      if (response.ok) {
+        navigate(`/book/${hotel.id}`);
+
+      } else {
+        console.error('Failed to book hotel');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   const generateContent = () => {
     return data.map((hotel) => (
-      <Link key={hotel.id} to={`/hotels/${hotel.id}`}>
-        <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md">
+      <div key={hotel.id} className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md">
+        <Link to={`/hotels/${hotel.id}`}>
           <img src={hotel.image} alt={hotel.name} className="w-full h-48 object-cover" />
-          <div className="p-4">
-            <h2 className="text-xl font-bold mb-2">{hotel.name}</h2>
-            <p className="text-gray-600 dark:text-gray-300 mb-2">{hotel.address}</p>
-            <p className="text-gray-800 dark:text-gray-200">${hotel.price} / night</p>
-          </div>
+        </Link>
+        <div className="p-4">
+          <h2 className="text-xl font-bold mb-2">{hotel.name}</h2>
+          <p className="text-gray-600 dark:text-gray-300 mb-2">{hotel.address}</p>
+          <p className="text-gray-800 dark:text-gray-200">${hotel.price} / night</p>
+          <button
+            onClick={() => handleBookNow(hotel)}
+            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
+          >
+            Book Now
+          </button>
         </div>
-      </Link>
+      </div>
     ));
   };
 
@@ -47,10 +71,12 @@ const RoomsGallery: React.FC = () => {
     const fetchData = async () => {
       try {
         const response = await fetch('http://127.0.0.1:5000/hotels', {
-          method: "POST",
+          method: 'POST',
         });
         
         const dbData = await response.json();
+        let size = dbData.length
+        console.log(size / 12)
         setData(dbData);
         setLoading(false);  // Set loading to false after data is fetched
       } catch (error) {
