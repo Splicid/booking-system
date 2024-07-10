@@ -21,12 +21,14 @@ interface Hotel {
 const RoomsGallery: React.FC = () => {
   const [data, setData] = useState<Hotel[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [loadMore, setLoadMore] = useState<boolean>(true);
+  const [size, setSize] = useState<number>(12);
   const navigate = useNavigate();
 
   const handleBookNow = async (hotel: Hotel) => {
     try {
       const response = await fetch('http://127.0.0.1:5000/book', {
-        method: 'POST',
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -47,36 +49,35 @@ const RoomsGallery: React.FC = () => {
   };
 
   const generateContent = () => {
-    return data.map((hotel) => (
-      <div key={hotel.id} className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md">
-        <Link to={`/hotels/${hotel.id}`}>
-          <img src={hotel.image} alt={hotel.name} className="w-full h-48 object-cover" />
-        </Link>
-        <div className="p-4">
-          <h2 className="text-xl font-bold mb-2">{hotel.name}</h2>
-          <p className="text-gray-600 dark:text-gray-300 mb-2">{hotel.address}</p>
-          <p className="text-gray-800 dark:text-gray-200">${hotel.price} / night</p>
+    // Map over the first 10 hotels and display them
+    return data.slice(0, size).map((hotel) => (
+      <div key={hotel.id} className="bg-white dark:bg-gray-800 shadow p-4 rounded-lg">
+        <img src={hotel.image} alt={hotel.name} className="w-full h-32 sm:h-48 object-cover rounded-lg" />
+        <div className="mt-4">
+          <h2 className="text-xl font-bold">{hotel.name}</h2>
+          <p className="mt-2 text-gray-600 dark:text-gray-300">{hotel.address}</p>
+          <p className="text-gray-800 dark:text-gray-100 mt-2">${hotel.price} per night</p>
+          <p className="text-gray-800 dark:text-gray-100 mt-2">Rating: {hotel.rating}</p>
           <button
             onClick={() => handleBookNow(hotel)}
-            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
+            className="bg-blue-500 text-white px-4 py-2 rounded mt-4 hover:bg-blue-600 transition duration-300"
           >
             Book Now
           </button>
         </div>
       </div>
-    ));
+    ),
+    );
   };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch('http://127.0.0.1:5000/hotels', {
-          method: 'POST',
+          method: 'GET',
         });
         
         const dbData = await response.json();
-        let size = dbData.length
-        console.log(size / 12)
         setData(dbData);
         setLoading(false);  // Set loading to false after data is fetched
       } catch (error) {
@@ -94,6 +95,24 @@ const RoomsGallery: React.FC = () => {
         <h1 className="text-3xl font-bold mb-4">Rooms Gallery</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {loading ? <p>Loading...</p> : generateContent()}
+          {/* Adding load more button */}
+          <div className="col-span-4 flex justify-center">
+            {loadMore && (
+              <button
+                className="bg-blue-500 text-white px-4 py-2 rounded mt-4 hover:bg-blue-600 transition duration-300"
+                onClick={() => {
+                  setSize(size + 10);
+                  // Example condition to stop loading more items
+                  if (size + 10 >= 50) { // Adjust this condition as needed
+                    setLoadMore(false);
+                  }
+                }}
+              >
+                Load More
+            </button>
+            )}
+          </div>
+          
         </div>
       </div>
     </div>

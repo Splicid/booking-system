@@ -6,7 +6,7 @@ function Navbar() {
   return (
     <div className="flex items-center justify-between flex-wrap p-6">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
-        <span className="font-semibold text-xl text-sky-400 tracking-tight">Tailwind CSS</span>
+        <span className="font-semibold text-xl text-sky-400 tracking-tight"> Home </span>
       </div>
       <div className="block lg:hidden">
         <button
@@ -22,13 +22,13 @@ function Navbar() {
       <div className={`w-full block flex-grow lg:flex lg:items-center lg:w-auto ${isMenuOpen ? 'block' : 'hidden'}`}>
         <div className="text-sm lg:flex-grow">
           <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-            Docs
+            Hotels
           </a>
-          <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+          {/* <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
             Examples
-          </a>
+          </a> */}
           <a href="#responsive-header" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
-            Blog
+            About
           </a>
         </div>
         <div>

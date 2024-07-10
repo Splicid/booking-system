@@ -8,12 +8,12 @@ CORS(app)
 
 
 
-@app.route('/hotels', methods=["POST"])
+@app.route('/hotels', methods=["GET"])
 async def db_lookup():
     table = await database.lookup()
     return jsonify([dict(record) for record in table])
 
 
-@app.route('/book', methods=["POST"])
+@app.route('/book', methods=["GET"])
 async def r_booking():
     return {"Code": 200}
