@@ -101,7 +101,7 @@ const RoomsGallery: React.FC = () => {
               <button
                 className="bg-blue-500 text-white px-4 py-2 rounded mt-4 hover:bg-blue-600 transition duration-300"
                 onClick={() => {
-                  setSize(size + 10);
+                  setSize(size + 12);
                   // Example condition to stop loading more items
                   if (size + 10 >= 50) { // Adjust this condition as needed
                     setLoadMore(false);
