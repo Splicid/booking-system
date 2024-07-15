@@ -1,10 +1,10 @@
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; 
 
 const Content = () => {
   return (
     <div className="bg-zinc-900 p-6">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-bold text-center text-gray-50 mb-6">Welcome to Paradise Beach Resort</h1>
         <Carousel
           showArrows={true}

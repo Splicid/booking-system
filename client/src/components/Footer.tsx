@@ -1,27 +1,24 @@
-// src/Footer.js
-import React from 'react';
-
 const Footer = () => {
   return (
     <footer className="bg-black text-white py-6">
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="flex flex-wrap justify-between">
-          <div className="w-full sm:w-1/2 md:w-1/4 mb-6 sm:mb-0">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="flex flex-wrap justify-between space-y-6 md:space-y-0">
+          <div className="w-full sm:w-1/2 md:w-1/4">
             <h2 className="text-lg font-semibold mb-2">About Us</h2>
             <p className="text-gray-300">
               Paradise Beach Resort is your ultimate destination for relaxation and adventure. Enjoy our luxurious amenities and stunning views.
             </p>
           </div>
-          <div className="w-full sm:w-1/2 md:w-1/4 mb-6 sm:mb-0">
+          <div className="w-full sm:w-1/2 md:w-1/4">
             <h2 className="text-lg font-semibold mb-2">Quick Links</h2>
-            <ul>
+            <ul className="space-y-1">
               <li><a href="#accommodations" className="text-gray-300 hover:text-white">Accommodations</a></li>
               <li><a href="#dining" className="text-gray-300 hover:text-white">Dining</a></li>
               <li><a href="#activities" className="text-gray-300 hover:text-white">Activities</a></li>
               <li><a href="#spa" className="text-gray-300 hover:text-white">Spa</a></li>
             </ul>
           </div>
-          <div className="w-full sm:w-1/2 md:w-1/4 mb-6 sm:mb-0">
+          <div className="w-full sm:w-1/2 md:w-1/4">
             <h2 className="text-lg font-semibold mb-2">Contact Us</h2>
             <p className="text-gray-300">
               123 Beachfront Avenue<br />
@@ -52,5 +49,6 @@ const Footer = () => {
     </footer>
   );
 };
+
 
 export default Footer;

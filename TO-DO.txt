@@ -1,7 +1,7 @@
 
 TO DO:
     - Complete a home page 
-        - Responsive design -- NOT DONE
+        - Responsive design -- NOT DONE 
     - Finish routes 
 
 Database
