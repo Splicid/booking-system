@@ -1,4 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "./auth";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -12,11 +14,18 @@ const Login: React.FC = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {;
     e.preventDefault();
-    // Handle login logic here
-    console.log('Email:', email);
-    console.log('Password:', password);
+    createUserWithEmailAndPassword(auth , email, password)
+      .then((userCredenital) => {
+        const user = userCredenital.user;
+        console.log(user)
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage)
+      }) 
   };
 
   return (

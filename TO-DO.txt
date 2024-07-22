@@ -7,11 +7,12 @@ TO DO:
 Database
     - Setup db for hotels -- DONE
     - Pull data from db to our front end. - Front end -> back end  -> data will generate. - DONE
+    - firebase for user auth and protected routes - Next to work on
 
 
 Front-end
     - add in next page for all listed hotels - DONE
-    - Setup front end page to redirect to booking page
+    - Setup front end page to redirect to booking page - NOT DONE
     - Add responsivenes for mobile devices - NOT DONE
 
 
