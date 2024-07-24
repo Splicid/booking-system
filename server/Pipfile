@@ -11,6 +11,7 @@ cors = "*"
 flask-cors = "*"
 flask = {extras = ["async"], version = "*"}
 asyncpg = "*"
+firebase-admin = "*"
 
 [dev-packages]
 

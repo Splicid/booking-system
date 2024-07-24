@@ -8,6 +8,10 @@ Database
     - Setup db for hotels -- DONE
     - Pull data from db to our front end. - Front end -> back end  -> data will generate. - DONE
     - firebase for user auth and protected routes - Next to work on
+        - I got sign in working next is:
+            User sessions
+            User Sign out
+            Protected routes?
 
 
 Front-end
