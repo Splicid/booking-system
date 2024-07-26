@@ -25,11 +25,13 @@ coverage/
 
 # Firebase configuration
 firebaseConfig.ts
+firebase-creds.json
 auth.tsx
 
 # IDE specific files
 .vscode/
 .idea/
+
 
 # MacOS specific files
 .DS_Store

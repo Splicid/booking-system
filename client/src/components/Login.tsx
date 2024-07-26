@@ -14,12 +14,13 @@ const Login: React.FC = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e: FormEvent) => {;
+  const handleSubmit = async (e: FormEvent) => {;
     e.preventDefault();
     createUserWithEmailAndPassword(auth , email, password)
       .then((userCredenital) => {
-        const user = userCredenital.user;
-        console.log(user)
+        const user = userCredenital.user.getIdToken().then((result) => {
+          console.log(result)
+        });
       })
       .catch((error) => {
         const errorCode = error.code;
